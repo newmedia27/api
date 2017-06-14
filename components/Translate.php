@@ -20,12 +20,17 @@
 			$this->apiKey = $key;
 		}
 		
+		/**
+		 * @param $data
+		 * @param $target
+		 * @return mixed
+		 */
 		public function translate($data, $target)
 		{
 			$values = [
 				'key' => $this->apiKey,
 				'target' => $target,
-				'text' => $data
+				'q' => $data
 			];
 			$formData = http_build_query($values);
 			$ch = curl_init(self::TRANSLATE_API);
