@@ -8,6 +8,7 @@
 		private $name;
 		private $language;
 		private $file;
+		public $msg;
 		
 		
 		public function __construct($_POST)
@@ -21,25 +22,29 @@
 		public function validation()
 		{
 			$preg = "/^[a-zA-Z0-9]{2,15}$/";
-			$msg='';
+			$msg = '';
 			if (preg_match($preg, $this->name)) {
-				$k=0;
-				for ($i=1; $i<strlen($this->name); $i++){
-					if ($this->name[$k]===$this->name[$i]){
-						$k=$i;
-					}else{
+				$k = 0;
+				for ($i = 1; $i < strlen($this->name); $i++) {
+					if ($this->name[$k] === $this->name[$i]) {
+						$k = $i;
+					} else {
 						break;
 					}
 				}
-				if ($k ==strlen($this->name) ){
+				if ($k == strlen($this->name)) {
 					$msg = 'Please enter valid name';
 				}
 				
 				if (strlen($this->name) < 2) {
-					return 'You name is too short' . empty(isset($msg))? ',' . $msg : null;
+					$this->msg = 'You name is too short' . empty(isset($msg)) ? ',' . $msg : null;
+					
+					return false;
 				}
 				if (strlen($this->name) > 15) {
-					return 'Your name is too long' . empty(isset($msg))? ',' . $msg : null;
+					$this->msg = 'Your name is too long' . empty(isset($msg)) ? ',' . $msg : null;
+					
+					return false;
 				}
 			} else {
 				return true;
@@ -53,4 +58,22 @@
 		{
 			return $this->file;
 		}
+		
+		/**
+		 * @return null
+		 */
+		public function getName()
+		{
+			return $this->name;
+		}
+		
+		/**
+		 * @return null
+		 */
+		public function getLanguage()
+		{
+			return $this->language;
+		}
+		
 	}
+	

@@ -1,12 +1,5 @@
 <?php
 	/**
-	 * Created by PhpStorm.
-	 * User: jart
-	 * Date: 14.06.2017
-	 * Time: 12:55
-	 */
-	
-	/**
 	 * Error reporting ON
 	 */
 	
